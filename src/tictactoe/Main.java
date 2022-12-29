@@ -5,115 +5,57 @@ import java.util.Scanner;
 
 public class Main {
     public static void ShowMatrix(char[][] matrix) {
-            for (int i = 0; i < 10; i++) {
-                System.out.print("-");
-            }
-            System.out.println();
-            for (int i = 0; i < matrix.length; i++) {
-                System.out.print("| ");
-                for (int j = 0; j < matrix[i].length; j++) {
-                    if (i == 0) {
-                        if (matrix[i][j] == 'X' || matrix[i][j] == 'O') {
-                            System.out.print(matrix[i][j] + " ");
-                        } else {
-                            matrix[i][j] = '_';
-                            System.out.print(matrix[i][j] + " ");
-                        }
-                    } else if (i == 1) {
-                        if (matrix[i][j] == 'X' || matrix[i][j] == 'O') {
-                            System.out.print(matrix[i][j] + " ");
-                        } else {
-                            matrix[i][j] = '_';
-                            System.out.print(matrix[i][j] + " ");
-                        }
-                    } else {
-                        if (matrix[i][j] == 'X' || matrix[i][j] == 'O') {
-                            System.out.print(matrix[i][j] + " ");
-                        } else {
-                            matrix[i][j] = '_';
-                            System.out.print(matrix[i][j] + " ");
-                        }
-                    }
-                }
-                System.out.print("|");
-                System.out.println();
-            }
-            for (int i = 0; i < 10; i++) {
-                System.out.print("-");
-            }
+        for (int i = 0; i < 10; i++) {
+            System.out.print("-");
+        }
         System.out.println();
-        }
-        public static void ShowStatus (char[][] matrix) {
-            boolean doesXwin = false;
-            boolean doesOwin = false;
-            boolean isDraw = false;
-            boolean isImpossible = false;
-            boolean isFinished = false;
-            int counterX = 0;
-            int counterO = 0;
-            for (int i = 0; i < matrix.length; i++) {
-                for (int j = 0; j < matrix[i].length; j++) {
-                    if (matrix[i][j] == 'X') {
-                        counterX++;
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (i == 0) {
+                    if (matrix[i][j] == 'X' || matrix[i][j] == 'O') {
+                        System.out.print(matrix[i][j] + " ");
+                    } else {
+                        matrix[i][j] = '_';
+                        System.out.print(matrix[i][j] + " ");
                     }
-                    if (matrix[i][j] == 'O') {
-                        counterO++;
+                } else if (i == 1) {
+                    if (matrix[i][j] == 'X' || matrix[i][j] == 'O') {
+                        System.out.print(matrix[i][j] + " ");
+                    } else {
+                        matrix[i][j] = '_';
+                        System.out.print(matrix[i][j] + " ");
                     }
-                }
-            }
-            for (int i = 0; i < matrix.length; i++) {
-                for (int j = 0; j < matrix[i].length; j++) {
-                    if (!isFinished && (!doesXwin && !doesOwin)) {
-                        isDraw = true;
-                    }
-                    if ((matrix[0][j] == 'X' && matrix[1][j] == 'X' && matrix[2][j] == 'X') ||
-                            (matrix[i][0] == 'X' && matrix[i][1] == 'X' && matrix[i][2] == 'X') ||
-                            (matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X') ||
-                            (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X'))
-                    {
-                        doesXwin = true;
-                        isDraw = false;
-                        isFinished = false;
-                    }
-                    else if ((matrix[0][j] == 'O' && matrix[1][j] == 'O' && matrix[2][j] == 'O') ||
-                            (matrix[i][0] == 'O' && matrix[i][1] == 'O' && matrix[i][2] == 'O') ||
-                            (matrix[0][0] == 'O' && matrix[1][1] == 'O' && matrix[2][2] == 'O') ||
-                            (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O'))
-                    {
-                        doesOwin = true;
-                        isDraw = false;
-                        isFinished = false;
-                    }
-                    else if (matrix[i][j] == '_' && (Math.abs(counterX - counterO) < 2) && (!doesXwin && !doesOwin)) {
-                        isFinished = true;
-                    }
-
-                    else if ((doesOwin && doesXwin) || (Math.abs(counterX - counterO ) >= 2)) {
-                        isImpossible = true;
+                } else {
+                    if (matrix[i][j] == 'X' || matrix[i][j] == 'O') {
+                        System.out.print(matrix[i][j] + " ");
+                    } else {
+                        matrix[i][j] = '_';
+                        System.out.print(matrix[i][j] + " ");
                     }
                 }
             }
-/*            if (isFinished ) {//&& !isImpossible
-                System.out.println("Game not finished");
-            }*/
-            if (doesXwin && !doesOwin) {
-                System.out.println("X wins");
-                return;
-            }
-            if (doesOwin && !doesXwin) {
-                System.out.println("O wins");
-                return;
-            }
-            if (isDraw && !isFinished && !isImpossible) {
-                System.out.println("Draw");
-                return;
-            }
-/*            if (isImpossible) {
-                System.out.println("Impossible");
-            }*/
+            System.out.print("|");
+            System.out.println();
         }
+        for (int i = 0; i < 10; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+    }
+    public static boolean checkForValue(char val, char [][] matrix){
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[i].length; j++){
+                if(matrix[i][j] == val) return true;
+            }
+        }
+        return false; //it will reach here if return true was not called.
+    }
 
     public static void main(String[] args) {
+        boolean doesXwin = false;
+        boolean doesOwin = false;
+        boolean isDraw = false;
         int counterX = 0;
         int counterO = 0;
         char[][] matrix = new char[3][3];
@@ -132,44 +74,38 @@ public class Main {
             } else if (counterO == counterX) {
                 matrix[Integer.parseInt(i) - 1][Integer.parseInt(j) - 1] = 'X';
                 ShowMatrix(matrix);
-                ShowStatus(matrix);
                 counterX++;
             } else {
                 matrix[Integer.parseInt(i) - 1][Integer.parseInt(j) - 1] = 'O';
                 ShowMatrix(matrix);
-                ShowStatus(matrix);
                 counterO++;
             }
-/*            if (!doesXwin && !doesOwin && matrix[Integer.parseInt(i) - 1][Integer.parseInt(j) - 1] != '_') {
-                isDraw = true;
-            } else if ((matrix[0][Integer.parseInt(j) - 1] == 'X' && matrix[1][Integer.parseInt(j) - 1] == 'X' && matrix[2][Integer.parseInt(j) - 1] == 'X') ||
+            if ((matrix[0][Integer.parseInt(j) - 1] == 'X' && matrix[1][Integer.parseInt(j) - 1] == 'X' && matrix[2][Integer.parseInt(j) - 1] == 'X') ||
                     (matrix[Integer.parseInt(i) - 1][0] == 'X' && matrix[Integer.parseInt(i) - 1][1] == 'X' && matrix[Integer.parseInt(i) - 1][2] == 'X') ||
                     (matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X') ||
-                    (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X'))
-            {
+                    (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X')) {
                 doesXwin = true;
-                isDraw = false;
-                return;
+                break;
             } else if ((matrix[0][Integer.parseInt(j) - 1] == 'O' && matrix[1][Integer.parseInt(j) - 1] == 'O' && matrix[2][Integer.parseInt(j) - 1] == 'O') ||
                     (matrix[Integer.parseInt(i) - 1][0] == 'O' && matrix[Integer.parseInt(i) - 1][1] == 'O' && matrix[Integer.parseInt(i) - 1][2] == 'O') ||
                     (matrix[0][0] == 'O' && matrix[1][1] == 'O' && matrix[2][2] == 'O') ||
-                    (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O'))
-            {
+                    (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O')) {
                 doesOwin = true;
-                isDraw = false;
-                return;
-            }*/
+                break;
+            }else if (!checkForValue('_',matrix)) {
+                    isDraw = true;
+                    break;
+            }
         }
-/*        if (doesXwin && !doesOwin) {
-            System.out.println("X wins");
-        }
-        if (doesOwin && !doesXwin) {
-            System.out.println("O wins");
-        }
-        if (isDraw) {
-            System.out.println("Draw");
-        }*/
+
+            if (doesXwin) {
+                System.out.println("X wins");
+            }
+            if (doesOwin) {
+                System.out.println("O wins");
+            }
+            if (isDraw) {
+                System.out.println("Draw");
+            }
     }
-
 }
-
