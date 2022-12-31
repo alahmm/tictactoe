@@ -75,27 +75,44 @@ public class Main {
                 matrix[Integer.parseInt(i) - 1][Integer.parseInt(j) - 1] = 'X';
                 ShowMatrix(matrix);
                 counterX++;
+                if ((matrix[0][Integer.parseInt(j) - 1] == 'X' && matrix[1][Integer.parseInt(j) - 1] == 'X' && matrix[2][Integer.parseInt(j) - 1] == 'X') ||
+                        (matrix[Integer.parseInt(i) - 1][0] == 'X' && matrix[Integer.parseInt(i) - 1][1] == 'X' && matrix[Integer.parseInt(i) - 1][2] == 'X') ||
+                        (matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X') ||
+                        (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X')) {
+                    doesXwin = true;
+                    break;
+                } else if ((matrix[0][Integer.parseInt(j) - 1] == 'O' && matrix[1][Integer.parseInt(j) - 1] == 'O' && matrix[2][Integer.parseInt(j) - 1] == 'O') ||
+                        (matrix[Integer.parseInt(i) - 1][0] == 'O' && matrix[Integer.parseInt(i) - 1][1] == 'O' && matrix[Integer.parseInt(i) - 1][2] == 'O') ||
+                        (matrix[0][0] == 'O' && matrix[1][1] == 'O' && matrix[2][2] == 'O') ||
+                        (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O')) {
+                    doesOwin = true;
+                    break;
+                }else if (!checkForValue('_',matrix)) {
+                    isDraw = true;
+                    break;
+                }
             } else {
                 matrix[Integer.parseInt(i) - 1][Integer.parseInt(j) - 1] = 'O';
                 ShowMatrix(matrix);
                 counterO++;
-            }
-            if ((matrix[0][Integer.parseInt(j) - 1] == 'X' && matrix[1][Integer.parseInt(j) - 1] == 'X' && matrix[2][Integer.parseInt(j) - 1] == 'X') ||
-                    (matrix[Integer.parseInt(i) - 1][0] == 'X' && matrix[Integer.parseInt(i) - 1][1] == 'X' && matrix[Integer.parseInt(i) - 1][2] == 'X') ||
-                    (matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X') ||
-                    (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X')) {
-                doesXwin = true;
-                break;
-            } else if ((matrix[0][Integer.parseInt(j) - 1] == 'O' && matrix[1][Integer.parseInt(j) - 1] == 'O' && matrix[2][Integer.parseInt(j) - 1] == 'O') ||
-                    (matrix[Integer.parseInt(i) - 1][0] == 'O' && matrix[Integer.parseInt(i) - 1][1] == 'O' && matrix[Integer.parseInt(i) - 1][2] == 'O') ||
-                    (matrix[0][0] == 'O' && matrix[1][1] == 'O' && matrix[2][2] == 'O') ||
-                    (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O')) {
-                doesOwin = true;
-                break;
-            }else if (!checkForValue('_',matrix)) {
+                if ((matrix[0][Integer.parseInt(j) - 1] == 'X' && matrix[1][Integer.parseInt(j) - 1] == 'X' && matrix[2][Integer.parseInt(j) - 1] == 'X') ||
+                        (matrix[Integer.parseInt(i) - 1][0] == 'X' && matrix[Integer.parseInt(i) - 1][1] == 'X' && matrix[Integer.parseInt(i) - 1][2] == 'X') ||
+                        (matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X') ||
+                        (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X')) {
+                    doesXwin = true;
+                    break;
+                } else if ((matrix[0][Integer.parseInt(j) - 1] == 'O' && matrix[1][Integer.parseInt(j) - 1] == 'O' && matrix[2][Integer.parseInt(j) - 1] == 'O') ||
+                        (matrix[Integer.parseInt(i) - 1][0] == 'O' && matrix[Integer.parseInt(i) - 1][1] == 'O' && matrix[Integer.parseInt(i) - 1][2] == 'O') ||
+                        (matrix[0][0] == 'O' && matrix[1][1] == 'O' && matrix[2][2] == 'O') ||
+                        (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O')) {
+                    doesOwin = true;
+                    break;
+                }else if (!checkForValue('_',matrix)) {
                     isDraw = true;
                     break;
+                }
             }
+
         }
 
             if (doesXwin) {
